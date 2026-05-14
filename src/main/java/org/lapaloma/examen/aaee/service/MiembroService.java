@@ -1,4 +1,4 @@
-package org.lapaloma.examen.aaee.service;
+ppackage org.lapaloma.examen.aaee.service;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ public class MiembroService {
 
     private final IMiembroDAO miembroDAO;
 
-    // Spring inyecta el DAO automáticamente
     public MiembroService(IMiembroDAO miembroDAO) {
         this.miembroDAO = miembroDAO;
     }
@@ -27,8 +26,7 @@ public class MiembroService {
 
         List<Miembro> lista = miembroDAO.obtenerListaMiembros();
 
-        // Simulamos el caso de lista vacía para probar la excepción
-        lista=null;
+        // ❌ CORRECCIÓN: Se elimina 'lista=null;' que rompía el flujo
         
         if (lista == null || lista.isEmpty()) {
             throw new RuntimeException("No hay miembros disponibles");
@@ -48,8 +46,7 @@ public class MiembroService {
 
         Miembro miembro = miembroDAO.obtenerMiembroPorNombre(nombre);
 
-        // Simulamos el caso de miembro no encontrado para probar la excepción
-         miembro=null;
+        // ❌ CORRECCIÓN: Se elimina 'miembro=null;' que rompía el flujo
          
         if (miembro == null) {
             throw new MiembroNoEncontradoException("Miembro con nombre '" + nombre + "' no encontrado");
@@ -75,5 +72,4 @@ public class MiembroService {
 
         return miembro;
     }
-
 }

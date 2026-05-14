@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.lapaloma.examen.aaee.service;
 
 import java.util.List;
@@ -23,8 +20,7 @@ public class MinisterioService {
 
         List<Ministerio> lista = ministerioDAO.obtenerListaMinisterios();
 
-        // Esto provoca error
-        lista = null;
+        // ❌ CORRECCIÓN: Se elimina 'lista = null;' que provocaba el fallo en el test
         
         if (lista == null || lista.isEmpty()) {
             throw new RuntimeException("No hay miinisterios disponibles");
@@ -32,6 +28,4 @@ public class MinisterioService {
 
         return lista;
     }
-
- 
 }
